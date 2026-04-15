@@ -1,4 +1,21 @@
+index=ssc_inspec_event_idx exec_mode=weekly_cis_host_profile bunit=host_profile
+| spath
+| table host_name overall_status platform hostprofiles ingestion_date
 
+index=ssc_inspec_event_idx exec_mode=weekly_cis_host_profile bunit=host_profile
+| spath
+| mvexpand results{}
+| spath input=results{}
+| table host_name overall_status platform hostprofiles ingestion_date status incompliancedescription
+
+
+index=ssc_inspec_event_idx exec_mode=weekly_cis_host_profile bunit=host_profile
+| spath
+| mvexpand results{}
+| spath input=results{} output=status path=status
+| spath input=results{} output=incompliancedescription path=incompliancedescription
+| table host_name overall_status platform hostprofiles ingestion_date status incompliancedescription
+---
 def get_overall_status(results, hostprofiles):
     # Normalize hostprofiles (handle NaN / empty)
     if pd.isna(hostprofiles) or str(hostprofiles).strip() == "":
