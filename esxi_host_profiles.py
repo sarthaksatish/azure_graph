@@ -1,19 +1,19 @@
-index=ssc_inspec_event_idx exec_mode=weekly_cis_host_profile bunit=host_profile
-| spath
-| dedup host_name
-| table host_name overall_status platform hostprofiles ingestion_date
+index=ssc_inspec_event_idx exec_mode=weekly_cis_host_profile | dedup host_name | table host_name bunit overall_status platform hostprofiles ingestion_date
 
-index=ssc_inspec_event_idx exec_mode=weekly_cis_host_profile bunit=host_profile
-| spath
-| sort - ingestion_date
-| dedup host_name
-| table host_name overall_status platform hostprofiles ingestion_date
-
-index=ssc_inspec_event_idx exec_mode=weekly_cis_host_profile bunit=host_profile
+index=ssc_inspec_event_idx exec_mode=weekly_cis_host_profile
 | spath
 | mvexpand results
 | spath input=results
-| table host_name overall_status platform hostprofiles ingestion_date status incompliancedescription
+| table host_name bunit overall_status platform hostprofiles ingestion_date status incompliancedescription
+
+
+index=ssc_inspec_event_idx exec_mode=weekly_cis_host_profile
+| spath
+| sort - ingestion_date
+| dedup host_name
+| mvexpand results
+| spath input=results
+| table host_name bunit overall_status platform hostprofiles ingestion_date status incompliancedescription
 ---
 def get_overall_status(results, hostprofiles):
     # Normalize hostprofiles (handle NaN / empty)
