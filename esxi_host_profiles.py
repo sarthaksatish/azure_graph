@@ -22,8 +22,9 @@ today_date = datetime.today().strftime('%Y-%m-%d')
 def normalize_status(value):
     if pd.isna(value):
         return "unknown"
-    val = str(value).strip().lower()
     
+    val = str(value).strip().lower()
+
     if "non" in val:
         return "non_compliant"
     elif "no profile" in val:
@@ -40,10 +41,11 @@ def get_overall_status(results):
 
 
 for file in os.listdir(INPUT_FOLDER):
-    if file.endswith(".xlsx") or file.endswith(".xls"):
+    if file.endswith(".csv"):
         file_path = os.path.join(INPUT_FOLDER, file)
 
-        df = pd.read_excel(file_path)
+        # Read CSV (handles encoding issues better)
+        df = pd.read_csv(file_path, encoding="utf-8", engine="python")
 
         grouped_hosts = []
 
@@ -75,7 +77,7 @@ for file in os.listdir(INPUT_FOLDER):
 
             grouped_hosts.append(host_data)
 
-        # Output file name
+        # Output file name (same name, .json)
         output_file = os.path.splitext(file)[0] + ".json"
         output_path = os.path.join(OUTPUT_FOLDER, output_file)
 
