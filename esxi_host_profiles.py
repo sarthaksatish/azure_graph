@@ -1,3 +1,23 @@
+
+def get_overall_status(results, hostprofiles):
+    # Normalize hostprofiles (handle NaN / empty)
+    if pd.isna(hostprofiles) or str(hostprofiles).strip() == "":
+        hostprofiles_empty = True
+    else:
+        hostprofiles_empty = False
+
+    has_no_profile = any(r["status"] == "no_profile_attached" for r in results)
+    has_non_compliant = any(r["status"] == "non_compliant" for r in results)
+
+    # New condition
+    if hostprofiles_empty and has_no_profile:
+        return "not_scanned"
+
+    if has_non_compliant:
+        return "non_compliant"
+
+    return "compliant"
+
 import os
 import json
 import pandas as pd
@@ -71,7 +91,7 @@ for file in os.listdir(INPUT_FOLDER):
                 "platform": PLATFORM,
                 "bunit": BUNIT,
                 "exec_mode": EXEC_MODE,
-                "overall_status": get_overall_status(results),
+                "overall_status": get_overall_status(results, group.iloc[0]["HostProfile"]),
                 "results": results
             }
 
