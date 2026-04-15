@@ -9,6 +9,16 @@ index=ssc_inspec_event_idx exec_mode=weekly_cis_host_profile
 | spath input=results_mv path=status output=status
 | spath input=results_mv path=incompliancedescription output=incompliancedescription
 | table host_name bunit overall_status platform hostprofiles ingestion_date status incompliancedescription
+
+index=ssc_inspec_event_idx exec_mode=weekly_cis_host_profile
+| spath
+| sort - ingestion_date
+| dedup host_name
+| spath path=results{} output=results_mv
+| mvexpand results_mv
+| spath input=results_mv
+| foreach host_name bunit overall_status platform hostprofiles ingestion_date [ eval <<FIELD>>=mvindex(<<FIELD>>,0) ]
+| table host_name bunit overall_status platform hostprofiles ingestion_date status incompliancedescription
 ---
 def get_overall_status(results, hostprofiles):
     # Normalize hostprofiles (handle NaN / empty)
