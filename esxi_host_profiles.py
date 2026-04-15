@@ -16,16 +16,17 @@ index=ssc_inspec_event_idx exec_mode=weekly_cis_host_profile
 | dedup host_name
 | spath path=results{} output=results_mv
 | mvexpand results_mv
-| eval results_json=fromjson(results_mv)
-| eval status=results_json.status
-| eval incompliancedescription=results_json.incompliancedescription
+| eval is_empty=if(isnull(results_mv) OR results_mv="", 1, 0)
+| where is_empty=0
+| spath input=results_mv path=status output=status
+| spath input=results_mv path=incompliancedescription output=incompliancedescription
 | eval host_name=mvindex(host_name,0)
 | eval bunit=mvindex(bunit,0)
 | eval overall_status=mvindex(overall_status,0)
 | eval platform=mvindex(platform,0)
 | eval hostprofiles=mvindex(hostprofiles,0)
 | eval ingestion_date=mvindex(ingestion_date,0)
-| table host_name bunit overall_status platform hostprofiles ingestion_date status incompliancedescription
+| table host_name bunit overall_status status incompliancedescription
 ---
 def get_overall_status(results, hostprofiles):
     # Normalize hostprofiles (handle NaN / empty)
