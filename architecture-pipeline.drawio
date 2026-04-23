@@ -1,0 +1,474 @@
+<mxfile host="app.diagrams.net" modified="2026-04-23T00:00:00.000Z" agent="Codex" version="24.7.17" type="device">
+  <diagram id="arch-v2-3col-clean" name="Architecture V2 - 3 Column Clean">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2200" pageHeight="1700" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="title" value="Compliance Architecture V2 - REST Waivers (3-Column Layout)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="520" y="20" width="1160" height="50" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="leftCol" value="Column 1: Governance + Source of Truth (GCS)" style="swimlane;html=1;rounded=1;whiteSpace=wrap;container=1;collapsible=0;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="100" width="660" height="1480" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="gcsTeam" value="GCS Team" style="swimlane;html=1;rounded=1;whiteSpace=wrap;container=1;collapsible=0;fillColor=#ffe6e6;strokeColor=#C92A2A;fontStyle=1;" vertex="1" parent="leftCol">
+          <mxGeometry x="20" y="50" width="620" height="340" as="geometry"/>
+        </mxCell>
+        <mxCell id="baselineAuthoring" value="Baseline Authoring" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4ECDC4;strokeColor=#1A9B8E;fontColor=#ffffff;" vertex="1" parent="gcsTeam">
+          <mxGeometry x="30" y="55" width="560" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="waiverMgmt" value="Waiver Definition &amp; Management" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4ECDC4;strokeColor=#1A9B8E;fontColor=#ffffff;" vertex="1" parent="gcsTeam">
+          <mxGeometry x="30" y="125" width="560" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="waiverApi" value="Waiver REST API Service (Owned by GCS)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF6B6B;strokeColor=#C92A2A;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="gcsTeam">
+          <mxGeometry x="30" y="195" width="560" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="gcsSignoff" value="GCS Review + Sign-off" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF6B6B;strokeColor=#C92A2A;fontColor=#ffffff;" vertex="1" parent="gcsTeam">
+          <mxGeometry x="30" y="265" width="560" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="sourceRepo" value="Centralized Repository" style="swimlane;html=1;rounded=1;whiteSpace=wrap;container=1;collapsible=0;fillColor=#fff7d6;strokeColor=#F39C12;fontStyle=1;" vertex="1" parent="leftCol">
+          <mxGeometry x="20" y="430" width="620" height="320" as="geometry"/>
+        </mxCell>
+        <mxCell id="gitRepo" value="Git Repository" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFD93D;strokeColor=#F39C12;fontStyle=1;" vertex="1" parent="sourceRepo">
+          <mxGeometry x="30" y="55" width="560" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="baselineFiles" value="Baselines (versioned YAML/JSON)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE66D;strokeColor=#F39C12;" vertex="1" parent="sourceRepo">
+          <mxGeometry x="30" y="125" width="560" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="waiverFiles" value="Waivers (versioned YAML/JSON)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE66D;strokeColor=#F39C12;" vertex="1" parent="sourceRepo">
+          <mxGeometry x="30" y="195" width="560" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="schemas" value="Schemas &amp; Policies" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE66D;strokeColor=#F39C12;" vertex="1" parent="sourceRepo">
+          <mxGeometry x="30" y="265" width="560" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="waiverLifecycle" value="Waiver Lifecycle Management" style="swimlane;html=1;rounded=1;whiteSpace=wrap;container=1;collapsible=0;fillColor=#edf6fc;strokeColor=#4682B4;fontStyle=1;" vertex="1" parent="leftCol">
+          <mxGeometry x="20" y="790" width="620" height="210" as="geometry"/>
+        </mxCell>
+        <mxCell id="expiryMonitoring" value="Expiry Monitoring" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#87CEEB;strokeColor=#4682B4;fontColor=#ffffff;" vertex="1" parent="waiverLifecycle">
+          <mxGeometry x="30" y="70" width="270" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="waiverAlert" value="Alert on Expired Waivers" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#87CEEB;strokeColor=#4682B4;fontColor=#ffffff;" vertex="1" parent="waiverLifecycle">
+          <mxGeometry x="320" y="70" width="270" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="midCol" value="Column 2: Delivery Pipeline + Artifacts" style="swimlane;html=1;rounded=1;whiteSpace=wrap;container=1;collapsible=0;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="770" y="100" width="660" height="1480" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="pipeline" value="CI/CD Pipeline" style="swimlane;html=1;rounded=1;whiteSpace=wrap;container=1;collapsible=0;fillColor=#e7f6fb;strokeColor=#0B7A8F;fontStyle=1;" vertex="1" parent="midCol">
+          <mxGeometry x="20" y="50" width="620" height="520" as="geometry"/>
+        </mxCell>
+        <mxCell id="prTrigger" value="PR Trigger" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#45B7D1;strokeColor=#0B7A8F;fontColor=#ffffff;" vertex="1" parent="pipeline">
+          <mxGeometry x="30" y="55" width="560" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="validation" value="Validation (Schema + Policy Checks)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#45B7D1;strokeColor=#0B7A8F;fontColor=#ffffff;" vertex="1" parent="pipeline">
+          <mxGeometry x="30" y="130" width="560" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="approval" value="Approval Workflow (Mandatory GCS Review)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#45B7D1;strokeColor=#0B7A8F;fontColor=#ffffff;" vertex="1" parent="pipeline">
+          <mxGeometry x="30" y="205" width="560" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="versioning" value="Versioning + Tagging (Semantic Versioning)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#45B7D1;strokeColor=#0B7A8F;fontColor=#ffffff;" vertex="1" parent="pipeline">
+          <mxGeometry x="30" y="280" width="560" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="artifactBuild" value="Artifact Generation (baseline-package + waiver-package)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#45B7D1;strokeColor=#0B7A8F;fontColor=#ffffff;" vertex="1" parent="pipeline">
+          <mxGeometry x="30" y="355" width="560" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="publish" value="Publish to Artifact Repository" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#45B7D1;strokeColor=#0B7A8F;fontColor=#ffffff;" vertex="1" parent="pipeline">
+          <mxGeometry x="30" y="430" width="560" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="artifactRepo" value="Artifact Repository" style="swimlane;html=1;rounded=1;whiteSpace=wrap;container=1;collapsible=0;fillColor=#e6f5ed;strokeColor=#52A37D;fontStyle=1;" vertex="1" parent="midCol">
+          <mxGeometry x="20" y="620" width="620" height="300" as="geometry"/>
+        </mxCell>
+        <mxCell id="repoMain" value="Nexus / Artifactory / S3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#96CEB4;strokeColor=#52A37D;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="artifactRepo">
+          <mxGeometry x="30" y="55" width="560" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="baselineArtifact" value="baseline-v1.2.tar.gz" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#B8E6D5;strokeColor=#52A37D;" vertex="1" parent="artifactRepo">
+          <mxGeometry x="30" y="125" width="560" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="waiverArtifact" value="waiver-v1.2.tar.gz" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#B8E6D5;strokeColor=#52A37D;" vertex="1" parent="artifactRepo">
+          <mxGeometry x="30" y="190" width="560" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="metadata" value="Version Metadata (Changelog + Approval Info)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#B8E6D5;strokeColor=#52A37D;" vertex="1" parent="artifactRepo">
+          <mxGeometry x="30" y="255" width="560" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="rightCol" value="Column 3: Consumption + Runtime + Reporting" style="swimlane;html=1;rounded=1;whiteSpace=wrap;container=1;collapsible=0;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1480" y="100" width="660" height="1480" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="imageBakery" value="Image Bakery Team" style="swimlane;html=1;rounded=1;whiteSpace=wrap;container=1;collapsible=0;fillColor=#fde9e9;strokeColor=#C92A2A;fontStyle=1;" vertex="1" parent="rightCol">
+          <mxGeometry x="20" y="50" width="620" height="290" as="geometry"/>
+        </mxCell>
+        <mxCell id="imgPull" value="Pull Baselines from Artifact Repository" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F38181;strokeColor=#C92A2A;fontColor=#ffffff;" vertex="1" parent="imageBakery">
+          <mxGeometry x="30" y="55" width="560" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="imgBuild" value="Image Build Pipeline" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F38181;strokeColor=#C92A2A;fontColor=#ffffff;" vertex="1" parent="imageBakery">
+          <mxGeometry x="30" y="120" width="560" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="imgBake" value="Bake Image with Baselines" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F38181;strokeColor=#C92A2A;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="imageBakery">
+          <mxGeometry x="30" y="185" width="560" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="imgApi" value="Query Waivers via REST API (Build Time)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffd1d1;strokeColor=#C92A2A;" vertex="1" parent="imageBakery">
+          <mxGeometry x="30" y="250" width="560" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="configMgmt" value="Configuration Management Team" style="swimlane;html=1;rounded=1;whiteSpace=wrap;container=1;collapsible=0;fillColor=#eee9fb;strokeColor=#6A4C93;fontStyle=1;" vertex="1" parent="rightCol">
+          <mxGeometry x="20" y="380" width="620" height="360" as="geometry"/>
+        </mxCell>
+        <mxCell id="cfgPull" value="Pull Baselines from Artifact Repository" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#AA96DA;strokeColor=#6A4C93;fontColor=#ffffff;" vertex="1" parent="configMgmt">
+          <mxGeometry x="30" y="55" width="560" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="cfgPipeline" value="Config Mgmt Pipeline" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#AA96DA;strokeColor=#6A4C93;fontColor=#ffffff;" vertex="1" parent="configMgmt">
+          <mxGeometry x="30" y="120" width="560" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="cfgProfiles" value="Build Compliance Profiles from Baselines" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#AA96DA;strokeColor=#6A4C93;fontColor=#ffffff;" vertex="1" parent="configMgmt">
+          <mxGeometry x="30" y="185" width="560" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="cfgScan" value="Scan Hosts for Compliance" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#AA96DA;strokeColor=#6A4C93;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="configMgmt">
+          <mxGeometry x="30" y="250" width="560" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="cfgApi" value="Query Waivers via REST API (Scan Time)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d9ccf5;strokeColor=#6A4C93;" vertex="1" parent="configMgmt">
+          <mxGeometry x="30" y="315" width="560" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="observability" value="Observability + Audit" style="swimlane;html=1;rounded=1;whiteSpace=wrap;container=1;collapsible=0;fillColor=#fff0e8;strokeColor=#FF6347;fontStyle=1;" vertex="1" parent="rightCol">
+          <mxGeometry x="20" y="780" width="620" height="290" as="geometry"/>
+        </mxCell>
+        <mxCell id="auditTrail" value="Audit Trail (Git/PR/Tags/API Logs)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFB6A3;strokeColor=#FF6347;" vertex="1" parent="observability">
+          <mxGeometry x="30" y="55" width="560" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="driftDetection" value="Drift Detection (Image vs Runtime vs Baseline)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFB6A3;strokeColor=#FF6347;" vertex="1" parent="observability">
+          <mxGeometry x="30" y="120" width="560" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="dashboard" value="Compliance Dashboard" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFA07A;strokeColor=#FF6347;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="observability">
+          <mxGeometry x="30" y="185" width="560" height="55" as="geometry"/>
+        </mxCell>
+        <mxCell id="reporting" value="Reporting (Waiver Usage + Baseline Versions)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFB6A3;strokeColor=#FF6347;" vertex="1" parent="observability">
+          <mxGeometry x="30" y="250" width="560" height="40" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="infra" value="Infrastructure Targets" style="swimlane;html=1;rounded=1;whiteSpace=wrap;container=1;collapsible=0;fillColor=#fef1f7;strokeColor=#E91E63;fontStyle=1;" vertex="1" parent="rightCol">
+          <mxGeometry x="20" y="1110" width="620" height="160" as="geometry"/>
+        </mxCell>
+        <mxCell id="hosts" value="Servers / Hosts (Cloud + On-Prem)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCBAD3;strokeColor=#E91E63;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="infra">
+          <mxGeometry x="30" y="75" width="560" height="55" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#FF6B6B;endArrow=block;endFill=1;" edge="1" parent="1" source="baselineAuthoring" target="gitRepo"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#FF6B6B;endArrow=block;endFill=1;" edge="1" parent="1" source="waiverMgmt" target="gitRepo"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#FFD93D;endArrow=block;endFill=1;" edge="1" parent="1" source="gitRepo" target="prTrigger"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#45B7D1;endArrow=block;endFill=1;" edge="1" parent="1" source="prTrigger" target="validation"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#45B7D1;endArrow=block;endFill=1;" edge="1" parent="1" source="validation" target="approval"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#45B7D1;endArrow=block;endFill=1;" edge="1" parent="1" source="approval" target="versioning"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#45B7D1;endArrow=block;endFill=1;" edge="1" parent="1" source="versioning" target="artifactBuild"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#45B7D1;endArrow=block;endFill=1;" edge="1" parent="1" source="artifactBuild" target="publish"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#96CEB4;endArrow=block;endFill=1;" edge="1" parent="1" source="publish" target="repoMain"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#F38181;endArrow=block;endFill=1;" edge="1" parent="1" source="repoMain" target="imgPull"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#F38181;endArrow=block;endFill=1;" edge="1" parent="1" source="imgPull" target="imgBuild"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e12" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#F38181;endArrow=block;endFill=1;" edge="1" parent="1" source="imgBuild" target="imgBake"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e13" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#C92A2A;endArrow=block;endFill=1;" edge="1" parent="1" source="imgBake" target="imgApi"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e14" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#C92A2A;endArrow=block;endFill=1;" edge="1" parent="1" source="imgApi" target="waiverApi"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1760" y="430"/><mxPoint x="540" y="430"/></Array></mxGeometry></mxCell>
+
+        <mxCell id="e15" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#AA96DA;endArrow=block;endFill=1;" edge="1" parent="1" source="repoMain" target="cfgPull"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e16" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#AA96DA;endArrow=block;endFill=1;" edge="1" parent="1" source="cfgPull" target="cfgPipeline"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e17" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#AA96DA;endArrow=block;endFill=1;" edge="1" parent="1" source="cfgPipeline" target="cfgProfiles"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e18" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#AA96DA;endArrow=block;endFill=1;" edge="1" parent="1" source="cfgProfiles" target="cfgScan"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e19" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#6A4C93;endArrow=block;endFill=1;" edge="1" parent="1" source="cfgScan" target="cfgApi"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e20" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#6A4C93;endArrow=block;endFill=1;" edge="1" parent="1" source="cfgApi" target="waiverApi"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1760" y="690"/><mxPoint x="600" y="690"/></Array></mxGeometry></mxCell>
+
+        <mxCell id="e21" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#FFA07A;endArrow=block;endFill=1;" edge="1" parent="1" source="gitRepo" target="auditTrail"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e22" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#FFA07A;endArrow=block;endFill=1;" edge="1" parent="1" source="imgBake" target="driftDetection"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e23" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#FFA07A;endArrow=block;endFill=1;" edge="1" parent="1" source="cfgScan" target="driftDetection"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e24" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#FFA07A;endArrow=block;endFill=1;" edge="1" parent="1" source="driftDetection" target="dashboard"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e25" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#FFA07A;endArrow=block;endFill=1;" edge="1" parent="1" source="dashboard" target="reporting"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="e26" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#FCBAD3;endArrow=block;endFill=1;" edge="1" parent="1" source="imgBake" target="hosts"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e27" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#FCBAD3;endArrow=block;endFill=1;" edge="1" parent="1" source="cfgScan" target="hosts"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="e28" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#87CEEB;endArrow=block;endFill=1;" edge="1" parent="1" source="waiverFiles" target="expiryMonitoring"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e29" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#87CEEB;endArrow=block;endFill=1;" edge="1" parent="1" source="expiryMonitoring" target="waiverAlert"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e30" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#87CEEB;endArrow=block;endFill=1;" edge="1" parent="1" source="waiverAlert" target="gcsSignoff"><mxGeometry relative="1" as="geometry"/></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="arch-v2-clean-vertical" name="Architecture V2 - Clean Vertical">
+        <mxGraphModel dx="924" dy="660" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="2500" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="Compliance Architecture V2 - REST Waivers (Clear Vertical)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=18;" parent="1" vertex="1">
+                    <mxGeometry x="340" y="20" width="1120" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="gcs" value="1) GCS Team (Owner)" style="swimlane;html=1;rounded=1;whiteSpace=wrap;container=1;collapsible=0;fillColor=#ffe6e6;strokeColor=#C92A2A;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="100" width="1560" height="410" as="geometry"/>
+                </mxCell>
+                <mxCell id="baselineAuth" value="Baseline Authoring" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4ECDC4;strokeColor=#1A9B8E;fontColor=#ffffff;" parent="gcs" vertex="1">
+                    <mxGeometry x="40" y="50" width="420" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="waiverDef" value="Waiver Definition &amp; Management" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4ECDC4;strokeColor=#1A9B8E;fontColor=#ffffff;" parent="gcs" vertex="1">
+                    <mxGeometry x="40" y="140" width="420" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="waiverApi" value="Waiver REST API Service&#10;(Owned by GCS)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF6B6B;strokeColor=#C92A2A;fontColor=#ffffff;fontStyle=1;" parent="gcs" vertex="1">
+                    <mxGeometry x="40" y="230" width="420" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="gcsApproval" value="GCS Review + Sign-off" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FF6B6B;strokeColor=#C92A2A;fontColor=#ffffff;" parent="gcs" vertex="1">
+                    <mxGeometry x="40" y="330" width="420" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="repo" value="2) Centralized Repository" style="swimlane;html=1;rounded=1;whiteSpace=wrap;container=1;collapsible=0;fillColor=#fff7d6;strokeColor=#F39C12;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="550" width="1560" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="git" value="Git Repository" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFD93D;strokeColor=#F39C12;fontStyle=1;" parent="repo" vertex="1">
+                    <mxGeometry x="40" y="70" width="280" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="baseFiles" value="Baselines&#10;versioned YAML/JSON" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE66D;strokeColor=#F39C12;" parent="repo" vertex="1">
+                    <mxGeometry x="380" y="70" width="340" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="waiverFiles" value="Waivers&#10;versioned YAML/JSON" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE66D;strokeColor=#F39C12;" parent="repo" vertex="1">
+                    <mxGeometry x="760" y="70" width="340" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="schemas" value="Schemas &amp; Policies" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE66D;strokeColor=#F39C12;" parent="repo" vertex="1">
+                    <mxGeometry x="1140" y="70" width="340" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="pipeline" value="3) CI/CD Pipeline" style="swimlane;html=1;rounded=1;whiteSpace=wrap;container=1;collapsible=0;fillColor=#e7f6fb;strokeColor=#0B7A8F;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="770" width="1560" height="220" as="geometry"/>
+                </mxCell>
+                <mxCell id="pr" value="PR Trigger" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#45B7D1;strokeColor=#0B7A8F;fontColor=#ffffff;" parent="pipeline" vertex="1">
+                    <mxGeometry x="40" y="85" width="230" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="val" value="Validation&#10;Schema + Policy Checks" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#45B7D1;strokeColor=#0B7A8F;fontColor=#ffffff;" parent="pipeline" vertex="1">
+                    <mxGeometry x="310" y="85" width="250" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="approve" value="Approval Workflow" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#45B7D1;strokeColor=#0B7A8F;fontColor=#ffffff;" parent="pipeline" vertex="1">
+                    <mxGeometry x="600" y="85" width="250" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="ver" value="Versioning + Tagging" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#45B7D1;strokeColor=#0B7A8F;fontColor=#ffffff;" parent="pipeline" vertex="1">
+                    <mxGeometry x="890" y="85" width="250" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="build" value="Artifact Generation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#45B7D1;strokeColor=#0B7A8F;fontColor=#ffffff;" parent="pipeline" vertex="1">
+                    <mxGeometry x="1180" y="85" width="250" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="artifact" value="4) Artifact Repository" style="swimlane;html=1;rounded=1;whiteSpace=wrap;container=1;collapsible=0;fillColor=#e6f5ed;strokeColor=#52A37D;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="1030" width="1560" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="repoMain" value="Artifact Repository&#10;Nexus / Artifactory / S3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#96CEB4;strokeColor=#52A37D;fontColor=#ffffff;fontStyle=1;" parent="artifact" vertex="1">
+                    <mxGeometry x="40" y="60" width="340" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="baselinePkg" value="baseline-v1.2.tar.gz" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#B8E6D5;strokeColor=#52A37D;" parent="artifact" vertex="1">
+                    <mxGeometry x="430" y="65" width="320" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="waiverPkg" value="waiver-v1.2.tar.gz" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#B8E6D5;strokeColor=#52A37D;" parent="artifact" vertex="1">
+                    <mxGeometry x="790" y="65" width="320" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="meta" value="Metadata&#10;Changelog + Approval Info" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#B8E6D5;strokeColor=#52A37D;" parent="artifact" vertex="1">
+                    <mxGeometry x="1150" y="60" width="330" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="consumers" value="5) Consumer Execution Lanes" style="swimlane;html=1;rounded=1;whiteSpace=wrap;container=1;collapsible=0;fillColor=#f8f8f8;strokeColor=#666666;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="1250" width="1560" height="500" as="geometry"/>
+                </mxCell>
+                <mxCell id="imageLane" value="Image Bakery Team" style="swimlane;html=1;rounded=1;whiteSpace=wrap;container=1;collapsible=0;fillColor=#fde9e9;strokeColor=#C92A2A;fontStyle=1;" parent="consumers" vertex="1">
+                    <mxGeometry x="30" y="50" width="480" height="420" as="geometry"/>
+                </mxCell>
+                <mxCell id="imgPull" value="Pull Baselines" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F38181;strokeColor=#C92A2A;fontColor=#ffffff;" parent="imageLane" vertex="1">
+                    <mxGeometry x="110" y="70" width="260" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="imgBuild" value="Image Build Pipeline" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F38181;strokeColor=#C92A2A;fontColor=#ffffff;" parent="imageLane" vertex="1">
+                    <mxGeometry x="110" y="155" width="260" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="imgBake" value="Bake Image with Baselines" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F38181;strokeColor=#C92A2A;fontColor=#ffffff;fontStyle=1;" parent="imageLane" vertex="1">
+                    <mxGeometry x="110" y="240" width="260" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="imgDist" value="Distribute Images" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F38181;strokeColor=#C92A2A;fontColor=#ffffff;" parent="imageLane" vertex="1">
+                    <mxGeometry x="110" y="325" width="260" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="apiLane" value="Waiver API Interaction (Central Lane)" style="swimlane;html=1;rounded=1;whiteSpace=wrap;container=1;collapsible=0;fillColor=#fff4f4;strokeColor=#C92A2A;fontStyle=1;" parent="consumers" vertex="1">
+                    <mxGeometry x="540" y="50" width="470" height="420" as="geometry"/>
+                </mxCell>
+                <mxCell id="imgApiCall" value="Image Build -&gt; REST API Call" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffd1d1;strokeColor=#C92A2A;" parent="apiLane" vertex="1">
+                    <mxGeometry x="90" y="90" width="290" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="cfgApiCall" value="Scan -&gt; REST API Call" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d9ccf5;strokeColor=#6A4C93;" parent="apiLane" vertex="1">
+                    <mxGeometry x="90" y="180" width="290" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="apiResp" value="Waiver Data Response" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe5e5;strokeColor=#C92A2A;" parent="apiLane" vertex="1">
+                    <mxGeometry x="90" y="270" width="290" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="cfgLane" value="Configuration Management Team" style="swimlane;html=1;rounded=1;whiteSpace=wrap;container=1;collapsible=0;fillColor=#eee9fb;strokeColor=#6A4C93;fontStyle=1;" parent="consumers" vertex="1">
+                    <mxGeometry x="1040" y="50" width="490" height="420" as="geometry"/>
+                </mxCell>
+                <mxCell id="cfgPull" value="Pull Baselines" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#AA96DA;strokeColor=#6A4C93;fontColor=#ffffff;" parent="cfgLane" vertex="1">
+                    <mxGeometry x="110" y="50" width="270" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="cfgPipe" value="Config Mgmt Pipeline" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#AA96DA;strokeColor=#6A4C93;fontColor=#ffffff;" parent="cfgLane" vertex="1">
+                    <mxGeometry x="110" y="125" width="270" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="cfgProfile" value="Build Compliance Profiles" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#AA96DA;strokeColor=#6A4C93;fontColor=#ffffff;" parent="cfgLane" vertex="1">
+                    <mxGeometry x="110" y="200" width="270" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="cfgScan" value="Scan Hosts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#AA96DA;strokeColor=#6A4C93;fontColor=#ffffff;fontStyle=1;" parent="cfgLane" vertex="1">
+                    <mxGeometry x="110" y="275" width="270" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="cfgApply" value="Apply Waivers to Results" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#AA96DA;strokeColor=#6A4C93;fontColor=#ffffff;" parent="cfgLane" vertex="1">
+                    <mxGeometry x="110" y="350" width="270" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="obs" value="6) Observability &amp; Audit" style="swimlane;html=1;rounded=1;whiteSpace=wrap;container=1;collapsible=0;fillColor=#fff0e8;strokeColor=#FF6347;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="1790" width="1560" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="audit" value="Audit Trail&#10;Git/PR/Tags/API Logs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFB6A3;strokeColor=#FF6347;" parent="obs" vertex="1">
+                    <mxGeometry x="40" y="60" width="350" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="drift" value="Drift Detection&#10;Image/Runtime/Baseline" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFB6A3;strokeColor=#FF6347;" parent="obs" vertex="1">
+                    <mxGeometry x="430" y="60" width="350" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="dash" value="Compliance Dashboard" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFA07A;strokeColor=#FF6347;fontColor=#ffffff;fontStyle=1;" parent="obs" vertex="1">
+                    <mxGeometry x="820" y="60" width="330" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="report" value="Reporting&#10;Waiver Usage + Versions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFB6A3;strokeColor=#FF6347;" parent="obs" vertex="1">
+                    <mxGeometry x="1190" y="60" width="330" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="infra" value="7) Infrastructure" style="swimlane;html=1;rounded=1;whiteSpace=wrap;container=1;collapsible=0;fillColor=#fef1f7;strokeColor=#E91E63;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="2010" width="1560" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="hosts" value="Servers / Hosts (Cloud + On-Prem)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCBAD3;strokeColor=#E91E63;fontColor=#ffffff;fontStyle=1;" parent="infra" vertex="1">
+                    <mxGeometry x="510" y="55" width="540" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="life" value="8) Waiver Lifecycle Management" style="swimlane;html=1;rounded=1;whiteSpace=wrap;container=1;collapsible=0;fillColor=#edf6fc;strokeColor=#4682B4;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="2190" width="1560" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="expiry" value="Expiry Monitoring" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#87CEEB;strokeColor=#4682B4;fontColor=#ffffff;" parent="life" vertex="1">
+                    <mxGeometry x="430" y="60" width="300" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="alert" value="Alert on Expired Waivers" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#87CEEB;strokeColor=#4682B4;fontColor=#ffffff;" parent="life" vertex="1">
+                    <mxGeometry x="840" y="60" width="320" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#FF6B6B;endArrow=block;endFill=1;" parent="1" source="baselineAuth" target="git" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#FF6B6B;endArrow=block;endFill=1;" parent="1" source="waiverDef" target="git" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#FFD93D;endArrow=block;endFill=1;" parent="1" source="git" target="pr" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#45B7D1;endArrow=block;endFill=1;" parent="1" source="pr" target="val" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#45B7D1;endArrow=block;endFill=1;" parent="1" source="val" target="approve" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#45B7D1;endArrow=block;endFill=1;" parent="1" source="approve" target="ver" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#45B7D1;endArrow=block;endFill=1;" parent="1" source="ver" target="build" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#96CEB4;endArrow=block;endFill=1;" parent="1" source="build" target="repoMain" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#F38181;endArrow=block;endFill=1;" parent="1" source="repoMain" target="imgPull" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#F38181;endArrow=block;endFill=1;" parent="1" source="imgPull" target="imgBuild" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#F38181;endArrow=block;endFill=1;" parent="1" source="imgBuild" target="imgBake" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e12" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#F38181;endArrow=block;endFill=1;" parent="1" source="imgBake" target="imgDist" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e13" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#AA96DA;endArrow=block;endFill=1;" parent="1" source="repoMain" target="cfgPull" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e14" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#AA96DA;endArrow=block;endFill=1;" parent="1" source="cfgPull" target="cfgPipe" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e15" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#AA96DA;endArrow=block;endFill=1;" parent="1" source="cfgPipe" target="cfgProfile" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e16" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#AA96DA;endArrow=block;endFill=1;" parent="1" source="cfgProfile" target="cfgScan" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e17" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#AA96DA;endArrow=block;endFill=1;" parent="1" source="cfgScan" target="cfgApply" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e18" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#C92A2A;endArrow=block;endFill=1;" parent="1" source="imgBake" target="imgApiCall" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e19" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#6A4C93;endArrow=block;endFill=1;" parent="1" source="cfgScan" target="cfgApiCall" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e20" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#C92A2A;endArrow=block;endFill=1;" parent="1" source="imgApiCall" target="waiverApi" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="870" y="1350"/>
+                            <mxPoint x="870" y="360"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e21" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#6A4C93;endArrow=block;endFill=1;" parent="1" source="cfgApiCall" target="waiverApi" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="980" y="1440"/>
+                            <mxPoint x="980" y="360"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e22" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#C92A2A;endArrow=block;endFill=1;" parent="1" source="waiverApi" target="apiResp" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="940" y="360"/>
+                            <mxPoint x="940" y="1560"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e23" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#C92A2A;endArrow=block;endFill=1;" parent="1" source="apiResp" target="cfgApply" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e24" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#C92A2A;endArrow=block;endFill=1;" parent="1" source="apiResp" target="imgDist" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e25" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#FCBAD3;endArrow=block;endFill=1;" parent="1" source="imgDist" target="hosts" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e26" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#FCBAD3;endArrow=block;endFill=1;" parent="1" source="cfgApply" target="hosts" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e27" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#FFA07A;endArrow=block;endFill=1;" parent="1" source="git" target="audit" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e28" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#FFA07A;endArrow=block;endFill=1;" parent="1" source="cfgScan" target="drift" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e29" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#FFA07A;endArrow=block;endFill=1;" parent="1" source="imgBake" target="drift" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e30" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#FFA07A;endArrow=block;endFill=1;" parent="1" source="drift" target="dash" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e31" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#FFA07A;endArrow=block;endFill=1;" parent="1" source="dash" target="report" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e32" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#87CEEB;endArrow=block;endFill=1;" parent="1" source="waiverFiles" target="expiry" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e33" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#87CEEB;endArrow=block;endFill=1;" parent="1" source="expiry" target="alert" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e34" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;dashPattern=8 4;strokeWidth=2;strokeColor=#87CEEB;endArrow=block;endFill=1;" parent="1" source="alert" target="gcsApproval" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1320" y="2170"/>
+                            <mxPoint x="1320" y="360"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
