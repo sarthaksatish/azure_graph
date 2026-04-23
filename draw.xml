@@ -1,0 +1,87 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Baseline & Waiver Architecture">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- GCS Team -->
+        <mxCell id="gcs" value="GCS Team" style="swimlane;fillColor=#FF6B6B;fontColor=#ffffff;strokeColor=#C92A2A;" vertex="1" parent="1">
+          <mxGeometry x="20" y="20" width="260" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="baselineAuth" value="Baseline Authoring" style="rounded=1;fillColor=#4ECDC4;" vertex="1" parent="gcs">
+          <mxGeometry x="20" y="40" width="200" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="waiverDef" value="Waiver Definition" style="rounded=1;fillColor=#4ECDC4;" vertex="1" parent="gcs">
+          <mxGeometry x="20" y="80" width="200" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="waiverApi" value="Waiver API" style="rounded=1;fillColor=#FF6B6B;strokeWidth=2;" vertex="1" parent="gcs">
+          <mxGeometry x="20" y="120" width="200" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Git Repo -->
+        <mxCell id="repo" value="Centralized Repository" style="swimlane;fillColor=#FFD93D;" vertex="1" parent="1">
+          <mxGeometry x="320" y="20" width="260" height="180" as="geometry"/>
+        </mxCell>
+        <mxCell id="git" value="Git Repository" style="rounded=1;" vertex="1" parent="repo">
+          <mxGeometry x="20" y="40" width="200" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- CI/CD -->
+        <mxCell id="cicd" value="CI/CD Pipeline" style="swimlane;fillColor=#45B7D1;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="620" y="20" width="300" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="validation" value="Validation" style="rounded=1;" vertex="1" parent="cicd">
+          <mxGeometry x="20" y="40" width="200" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="approval" value="Approval" style="rounded=1;" vertex="1" parent="cicd">
+          <mxGeometry x="20" y="80" width="200" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="artifact" value="Build Artifacts" style="rounded=1;" vertex="1" parent="cicd">
+          <mxGeometry x="20" y="120" width="200" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Artifact Repo -->
+        <mxCell id="artifactRepo" value="Artifact Repository" style="swimlane;fillColor=#96CEB4;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="960" y="20" width="260" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="baselinePkg" value="Baseline Package" style="rounded=1;" vertex="1" parent="artifactRepo">
+          <mxGeometry x="20" y="40" width="200" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="waiverPkg" value="Waiver Package" style="rounded=1;" vertex="1" parent="artifactRepo">
+          <mxGeometry x="20" y="80" width="200" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Image Bakery -->
+        <mxCell id="image" value="Image Bakery" style="swimlane;fillColor=#F38181;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="320" y="260" width="260" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="imageBuild" value="Image Build" style="rounded=1;" vertex="1" parent="image">
+          <mxGeometry x="20" y="40" width="200" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Config Mgmt -->
+        <mxCell id="config" value="Config Mgmt" style="swimlane;fillColor=#AA96DA;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="620" y="260" width="260" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="scan" value="Scan Hosts" style="rounded=1;" vertex="1" parent="config">
+          <mxGeometry x="20" y="40" width="200" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Edges -->
+        <mxCell edge="1" source="baselineAuth" target="git" parent="1"/>
+        <mxCell edge="1" source="waiverDef" target="git" parent="1"/>
+        <mxCell edge="1" source="git" target="validation" parent="1"/>
+        <mxCell edge="1" source="validation" target="approval" parent="1"/>
+        <mxCell edge="1" source="approval" target="artifact" parent="1"/>
+        <mxCell edge="1" source="artifact" target="baselinePkg" parent="1"/>
+        <mxCell edge="1" source="artifact" target="waiverPkg" parent="1"/>
+        <mxCell edge="1" source="baselinePkg" target="imageBuild" parent="1"/>
+        <mxCell edge="1" source="baselinePkg" target="scan" parent="1"/>
+        <mxCell edge="1" source="waiverApi" target="imageBuild" style="dashed=1;" parent="1"/>
+        <mxCell edge="1" source="waiverApi" target="scan" style="dashed=1;" parent="1"/>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
