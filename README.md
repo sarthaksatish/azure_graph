@@ -1,3 +1,22 @@
+Hi Vignesh & Anu,
+
+Hope you’re both doing well.
+
+I wanted to share a quick update on the current status of the SSM solution, as progress has not moved forward as expected since our last discussion on 25-Feb-2026.
+
+Here are the key gaps at the moment:
+
+The granular reports we agreed to publish are still pending. The outputs being uploaded to the buckets remain high-level reports from the compliance dashboard.
+The March 31 ETA for completing the SSM solution and onboarding AWS Central results has passed. We have not yet received AWSFed compliance data or AWSCentral data.
+S3 paths for data uploads have not been finalized, which is blocking us from proceeding with the logic for the consumption pattern.
+
+Could you please help prioritize this and share an updated ETA for when we can expect the granular scan reports for both AWS Central and AWSFed?
+
+Appreciate your support in moving this forward.
+
+---
+
+
 # Need for Granular CIS Control Reporting Using AWS SSM
 
 ## Introduction
